@@ -1,4 +1,4 @@
-package com.example.application.views.about;
+package com.example.application.views.tools;
 
 import com.example.application.views.MainLayout;
 import com.vaadin.flow.component.html.H2;
@@ -9,11 +9,11 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
 
-@PageTitle("About")
-@Route(value = "about", layout = MainLayout.class)
-public class AboutView extends VerticalLayout {
+@PageTitle("Tools")
+@Route(value = "tools", layout = MainLayout.class)
+public class ToolsView extends VerticalLayout {
 
-    public AboutView() {
+    public ToolsView() {
         setSpacing(false);
 
         Image img = new Image("images/empty-plant.png", "placeholder plant");
