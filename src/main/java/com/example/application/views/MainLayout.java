@@ -1,8 +1,8 @@
 package com.example.application.views;
 
-import com.example.application.views.tools.ToolsView;
+import com.example.application.views.datarep.DataRepView;
 import com.example.application.views.home.HomeView;
-import com.example.application.views.topics.TopicsView;
+import com.example.application.views.numsystems.NumSystemsView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Footer;
@@ -53,8 +53,8 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         nav.addItem(new SideNavItem("Home", HomeView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
-        nav.addItem(new SideNavItem("Tools", ToolsView.class, LineAwesomeIcon.FILE.create()));
-        nav.addItem(new SideNavItem("Topics", TopicsView.class, LineAwesomeIcon.BOOK_SOLID.create()));
+        nav.addItem(new SideNavItem("Number Systems", NumSystemsView.class, LineAwesomeIcon.FILE.create()));
+        nav.addItem(new SideNavItem("Data Representation", DataRepView.class, LineAwesomeIcon.BOOK_SOLID.create()));
 
         return nav;
     }
