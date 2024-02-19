@@ -8,4 +8,8 @@ import com.vaadin.flow.router.Route;
 @PageTitle("Networking and Security")
 @Route(value = "compsecurity", layout = MainLayout.class)
 public class CompSecurityView extends VerticalLayout {
+
+    public CompSecurityView() {
+
+    }
 }

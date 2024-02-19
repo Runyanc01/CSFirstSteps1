@@ -7,4 +7,8 @@ import com.vaadin.flow.router.Route;
 @PageTitle("Computer Basics")
 @Route(value = "compbasics", layout = MainLayout.class)
 public class CompBasicsView extends VerticalLayout {
+
+    public CompBasicsView() {
+
+    }
 }
