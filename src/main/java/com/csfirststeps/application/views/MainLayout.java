@@ -1,9 +1,9 @@
-package com.example.application.views;
+package com.csfirststeps.application.views;
 
-import com.example.application.views.compsecurity.CompSecurityView;
-import com.example.application.views.datarep.DataRepView;
-import com.example.application.views.compbasics.CompBasicsView;
-import com.example.application.views.home.HomeView;
+import com.csfirststeps.application.views.datarep.*;
+import com.csfirststeps.application.views.compsecurity.CompSecurityView;
+import com.csfirststeps.application.views.compbasics.CompBasicsView;
+import com.csfirststeps.application.views.home.HomeView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.Footer;
@@ -11,17 +11,12 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.component.orderedlayout.Scroller;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.theme.lumo.Lumo;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.vaadin.lineawesome.LineAwesomeIcon;
 
-/**
- * The main view is a top-level placeholder for other views.
- */
 public class MainLayout extends AppLayout {
 
     private H2 viewTitle;
@@ -55,11 +50,18 @@ public class MainLayout extends AppLayout {
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
 
-        nav.addItem(new SideNavItem("Home", HomeView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
-        nav.addItem(new SideNavItem("Computer Basics", CompBasicsView.class, LineAwesomeIcon.HARD_HAT_SOLID.create()));
-        nav.addItem(new SideNavItem("Data Representation", DataRepView.class, LineAwesomeIcon.BOOK_SOLID.create()));
-        nav.addItem(new SideNavItem("Networking and Security", CompSecurityView.class, LineAwesomeIcon.NETWORK_WIRED_SOLID.create()));
+        SideNavItem home = new SideNavItem("Home", HomeView.class, LineAwesomeIcon.GLOBE_SOLID.create());
+        SideNavItem dataRep = new SideNavItem("Data Representation", DataRepView.class, LineAwesomeIcon.BOOK_SOLID.create());
+        SideNavItem compBasics = new SideNavItem("Computer Basics", CompBasicsView.class, LineAwesomeIcon.HARD_HAT_SOLID.create());
+        SideNavItem netsAndSecurity = new SideNavItem("Networking and Security", CompSecurityView.class, LineAwesomeIcon.NETWORK_WIRED_SOLID.create());
 
+        dataRep.addItem(new SideNavItem("Binary Basics", BinaryBasicsView.class));
+        dataRep.addItem(new SideNavItem("Convert Bases for Beginners", ConvertBasesView.class));
+        dataRep.addItem(new SideNavItem("Hexadecimal to Colors", HexToColorsView.class));
+        dataRep.addItem(new SideNavItem("Images from Bits and Hex", ImageRepView.class));
+        dataRep.addItem(new SideNavItem("Text from Bits", TextRepView.class));
+
+        nav.addItem(home, dataRep, compBasics, netsAndSecurity);
         return nav;
     }
 

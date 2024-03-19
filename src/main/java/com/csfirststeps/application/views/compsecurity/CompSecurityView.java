@@ -1,6 +1,6 @@
-package com.example.application.views.compsecurity;
+package com.csfirststeps.application.views.compsecurity;
 
-import com.example.application.views.MainLayout;
+import com.csfirststeps.application.views.MainLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;

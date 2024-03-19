@@ -1,5 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Madimi+One&display=swap')
+
+
 [theme~="dark"] {
 	--lumo-primary-color: red;
+}
+
+
+
+
+.welcome-text {
+    justify-content: center;
+    padding: 2rem;
+    font-family: "Madimi One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 
@@ -24,6 +38,3 @@ vaadin-side-nav-item vaadin-icon {
   display: none;
 }
 
-vaadin-button {
-    --lumo-font-family: Helvetica;
-}
