@@ -11,7 +11,7 @@ public class Row extends Span {
     Random random;
     int randNum;
 
-    private CustGameButton[] buttons;
+    private CustGameButton[] buttons = new CustGameButton[8];
 
     private Consumer<Row> rowRemovalCallback;
 
@@ -23,7 +23,6 @@ public class Row extends Span {
 
 
         int[] values = new int[8];
-        this.buttons = new CustGameButton[8];
 
         int targetNum = getDecimalValue();
 
@@ -37,7 +36,7 @@ public class Row extends Span {
                 .set("margin-left", "8px");
 
         for (int i = 0; i < 8; i++) {
-            buttons[i] = new CustGameButton("", values, i);
+            buttons[i] = new CustGameButton(values, i);
             buttons[i].getStyle().set("margin-left", "8px");
             buttons[i].getStyle().set("margin-right", "8 px");
             buttons[i].addClickListener(event -> checkAndRemoveRow(targetNum));

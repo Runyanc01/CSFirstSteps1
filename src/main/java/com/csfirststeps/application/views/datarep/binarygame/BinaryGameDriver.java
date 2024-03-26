@@ -29,6 +29,11 @@ public class BinaryGameDriver extends VerticalLayout{
     public BinaryGameDriver() {
 
 
+        LabelRow labelRow = new LabelRow();
+        labelRow.getStyle()
+                .set("width", "600px")
+                .set("padding-left", "18px");
+
         gameOverButton = new Button("Play Again");
         gameOverButton.getStyle()
                 .setHeight("50px")
@@ -50,7 +55,7 @@ public class BinaryGameDriver extends VerticalLayout{
                 .set("border", "1.25px solid black")
                 .set("border-radius", "5px")
                 .set("padding", "0px")
-                .set("height", "550px")
+                .set("height", "525px")
                 .set("width", "600px")
                 .set("display", "flex")
                 .set("flex-direction", "column-reverse")
@@ -61,7 +66,7 @@ public class BinaryGameDriver extends VerticalLayout{
                 .set("border-radius", "5px")
                 .set("padding", "0")
                 .set("height", "90px")
-                .set("width", "495")
+                .set("width", "600px")
                 .set("display", "flex")
                 .set("justify-content", "center");
 
@@ -69,7 +74,7 @@ public class BinaryGameDriver extends VerticalLayout{
 
 
 
-        add(gameArea, gameMenu);
+        add(gameArea, labelRow, gameMenu);
 
     }
 
@@ -79,14 +84,14 @@ public class BinaryGameDriver extends VerticalLayout{
 
         startPolling();
 
-        createGame();
+        generateFirstRow();
     }
 
     private void startPolling() {
 
         UI.getCurrent().addPollListener(event -> handlePolling());
 
-        UI.getCurrent().setPollInterval(3000);
+        UI.getCurrent().setPollInterval(5000);
 
     }
 
@@ -107,7 +112,7 @@ public class BinaryGameDriver extends VerticalLayout{
     }
 
     private void startGameTimer() {
-      final int intervalSeconds = 12;
+      final int intervalSeconds = 35;
 
         timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -116,6 +121,16 @@ public class BinaryGameDriver extends VerticalLayout{
                 getUI().ifPresent(ui -> ui.access(() -> createGame()));
             }
         }, 0, intervalSeconds * 1000);
+    }
+
+
+    public void generateFirstRow () {
+
+        Row row = new Row(this::removeRowIfMatch);
+        gameArea.getElement().insertChild(0,row.getElement());
+        rowCount++;
+        UI.getCurrent().push();
+
     }
 
 
@@ -166,7 +181,7 @@ public class BinaryGameDriver extends VerticalLayout{
         startButton.setVisible(false);
         if (timer == null) {
             startPolling();
-            startGame();
+            generateFirstRow();
         }
     }
 

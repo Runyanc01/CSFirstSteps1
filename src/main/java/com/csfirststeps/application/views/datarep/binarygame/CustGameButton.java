@@ -6,9 +6,9 @@ public class CustGameButton extends Button {
     int[] values = new int[8];
     int numClicks = 0;
 
-    public CustGameButton(String text, int[] values, int index){
+    public CustGameButton(int[] values, int index){
 
-        super(text);
+        this.setText("0");
         this.getStyle()
                 .set("max-width", "var(--lumo-size-xl)")
                 .set("min-width", "var(--lumo-size-xl)");
