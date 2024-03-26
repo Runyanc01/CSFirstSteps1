@@ -11,7 +11,6 @@ import java.util.TimerTask;
 
 @Tag("div")
 public class BinaryGameDriver extends VerticalLayout{
-//create variables
 
     private Timer timer;
 
@@ -25,7 +24,6 @@ public class BinaryGameDriver extends VerticalLayout{
 
     int rowCount = 0;
 
-    //add variables as parameters
     public BinaryGameDriver() {
 
 
@@ -33,7 +31,7 @@ public class BinaryGameDriver extends VerticalLayout{
         gameOverButton.getStyle()
                 .setHeight("50px")
                 .setWidth("200px")
-                .setBackgroundColor("red")
+                .setBackgroundColor("#892d2d")
                 .setColor("black");
         gameOverButton.setEnabled(false);
 
@@ -41,13 +39,13 @@ public class BinaryGameDriver extends VerticalLayout{
         startButton.getStyle()
                 .setHeight("50px")
                 .setWidth("200px")
-                .setBackgroundColor("green")
+                .setBackgroundColor("#3a6d24")
                 .setColor("white");
 
         startButton.addClickListener(event -> startGame());
 
         gameArea.getStyle()
-                .set("border", "1.25px solid black")
+                // .set("border", "1.25px solid black")
                 .set("border-radius", "5px")
                 .set("padding", "0px")
                 .set("height", "550px")
@@ -61,7 +59,7 @@ public class BinaryGameDriver extends VerticalLayout{
                 .set("border-radius", "5px")
                 .set("padding", "0")
                 .set("height", "90px")
-                .set("width", "495")
+                .set("width", "600px")
                 .set("display", "flex")
                 .set("justify-content", "center");
 
@@ -133,7 +131,7 @@ public class BinaryGameDriver extends VerticalLayout{
             stopPolling();
             gameArea.removeAll();
             gameArea.getStyle()
-                    .set("background-color", "black")
+                    //.set("background-color", "#313131")
                     .set("justify-content", "center")
                     .set("align-items", "center");
             gameArea.add(gameOverButton);
