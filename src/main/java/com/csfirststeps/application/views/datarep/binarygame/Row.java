@@ -1,10 +1,9 @@
 package com.csfirststeps.application.views.datarep.binarygame;
 
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.textfield.NumberField;
+
 
 import java.util.Random;
-import java.util.function.Consumer;
 
 public class Row extends Span {
 
@@ -13,12 +12,9 @@ public class Row extends Span {
 
     private CustGameButton[] buttons = new CustGameButton[8];
 
-    private Consumer<Row> rowRemovalCallback;
 
+    public Row() {
 
-    public Row(Consumer<Row> rowRemovalCallback) {
-        
-        this.rowRemovalCallback = rowRemovalCallback;
         this.random = new Random();
 
 
@@ -39,7 +35,6 @@ public class Row extends Span {
             buttons[i] = new CustGameButton(values, i);
             buttons[i].getStyle().set("margin-left", "8px");
             buttons[i].getStyle().set("margin-right", "8 px");
-            buttons[i].addClickListener(event -> checkAndRemoveRow(targetNum));
             container.add(buttons[i]);
         }
 
@@ -52,13 +47,7 @@ public class Row extends Span {
 
     }
 
-    private void checkAndRemoveRow(int targetNum) {
-        if (rowRemovalCallback != null) {
-            if (getButtonValuesSum() == targetNum) {
-                rowRemovalCallback.accept(this);
-            }
-        }
-    }
+
 
     public int getButtonValuesSum () {
         int sum = 0;
@@ -71,10 +60,8 @@ public class Row extends Span {
     }
 
     public int getDecimalValue() {
-        randNum = random.nextInt(255) +1;
+        randNum = random.nextInt(128) +1;
         return randNum;
     }
-
-
 
 }
