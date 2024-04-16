@@ -1,6 +1,5 @@
 package com.csfirststeps.application.views.datarep.binarygame;
 
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -19,11 +18,7 @@ public class BinaryGameDriver extends VerticalLayout{
 
     Button stop = new Button("End Game");
 
-    boolean gameRunning = false;
-
-    int binary;
-
-    int num;
+    Button checkRow = new Button("Check");
 
     public BinaryGameDriver() {
 
@@ -42,20 +37,42 @@ public class BinaryGameDriver extends VerticalLayout{
                 .set("flex-direction", "row")
                 .set("justify-content", "center");
 
+        checkRow.getStyle()
+                .set("padding", "3px")
+                .set("height", "60px")
+                .set("min-width", "250px")
+                .set("color", "white");
+        checkRow.setVisible(true);
+        checkRow.addClickListener(event -> {
+            Row currentRow = getCurrentRow();
+            if (currentRow != null) {
+                removeRowIfMatch(currentRow);
+            }
+        });
+
+
         start.getStyle()
                 .set("padding", "3px")
                 .set("height", "60px")
+                .set("color", "white")
                 .set("min-width", "250px");
         start.setDisableOnClick(true);
         start.addClickListener(event -> {
             run();
-            start.setEnabled(false);
+            gameMenu.remove(start, stop);
+            gameMenu.add(checkRow, stop);
+
         });
         stop.getStyle()
                 .set("padding", "3px")
                 .set("height", "60px")
+                .set("color", "white")
                 .set("min-width", "250px");
-        stop.addClickListener(event -> end());
+        stop.addClickListener(event -> {
+            end();
+            gameMenu.remove(checkRow, stop);
+            gameMenu.add(start, stop);
+        });
         gameMenu.add(start, stop);
 
         gameArea.getStyle()
@@ -68,41 +85,33 @@ public class BinaryGameDriver extends VerticalLayout{
                 .set("align-items", "flex-start");
 
 
-
-
         add(gameArea, labelRow, gameMenu);
 
     }
 
 
-
-
-
     public void removeRowIfMatch(Row row) {
         int sum = row.getButtonValuesSum();
-        int targetValue = row.getDecimalValue();
+        int targetValue = row.findDecVal();
         if (sum == targetValue) {
-            gameArea.getElement().removeChild(row.getElement());
-
+            gameArea.remove(row);
+            run();
         }
     }
 
-    public void populateRow () {
-
-            Row row = new Row();
-            gameArea.getElement().insertChild(0, row.getElement());
-            UI.getCurrent().push();
-
+    private Row getCurrentRow() {
+        for (int i = 0; i < gameArea.getComponentCount(); i++) {
+            if (gameArea.getComponentAt(i) instanceof Row) {
+                return (Row) gameArea.getComponentAt(i);
+            }
+        }
+        return null;
     }
 
-    public void run() {
 
+    public void run() {
         Row row = new Row();
         gameArea.add(row);
-        UI.getCurrent().push();
-        removeRowIfMatch(row);
-        
-
     }
 
     public void end() {

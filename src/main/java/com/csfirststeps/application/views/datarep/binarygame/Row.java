@@ -9,20 +9,18 @@ public class Row extends Span {
 
     Random random;
     int randNum;
+    Span decVal = new Span();
 
     private CustGameButton[] buttons = new CustGameButton[8];
-
 
     public Row() {
 
         this.random = new Random();
 
-
         int[] values = new int[8];
 
         int targetNum = getDecimalValue();
 
-        Span decVal = new Span();
 
         Span container = new Span();
         decVal.setText(String.valueOf(targetNum));
@@ -47,21 +45,32 @@ public class Row extends Span {
 
     }
 
-
-
     public int getButtonValuesSum () {
         int sum = 0;
-        for (int i = 0; i < buttons.length; i++) {
+        int power = 0;
+        for (int i = buttons.length - 1; i >= 0; i--) {
             if (buttons[i].getText().equals("1")) {
-                sum += Math.pow(2, i);
+                sum += Math.pow(2, power);
             }
+            power++;
         }
+        System.out.println("Button sum: " + sum);
         return sum;
     }
 
     public int getDecimalValue() {
         randNum = random.nextInt(128) +1;
+        System.out.println("Rand num: " + randNum);
         return randNum;
     }
+
+    public int findDecVal() {
+        int target;
+        target = Integer.parseInt(decVal.getText());
+        System.out.println("decVal: " + target);
+        return target;
+    }
+
+
 
 }
