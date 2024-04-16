@@ -4,6 +4,7 @@ import com.csfirststeps.application.views.MainLayout;
 import com.csfirststeps.application.views.datarep.binarygame.BinaryGameDriver;
 import com.csfirststeps.application.views.datarep.calculator.CalculatorWidget;
 import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -14,14 +15,35 @@ import com.vaadin.flow.router.Route;
 
 public class BinaryBasicsView extends DataRepView {
 
+        private Span[] labelRow;
+
         VerticalLayout pageLayout = new VerticalLayout();
 
         public BinaryBasicsView() {
 
                 BinaryGameDriver binGame = new BinaryGameDriver();
+
+                HorizontalLayout calcWithTable = new HorizontalLayout();
+
+                VerticalLayout twosTable = new VerticalLayout();
+
+                labelRow = new Span[8];
+                for (int i = 7; i >= 0; i--) {
+                        labelRow[i] = new Span();
+                        labelRow[i].getElement().setProperty("innerHTML", "2<sup>" + i + "</sup> =" + (int) Math.pow(2, i));
+                        labelRow[i].getStyle()
+                                .set("width", "32px")
+                                .set("height", "36px")
+                                .set("margin-left", "8px")
+                                .set("margin-right", "8px");
+
+                        twosTable.add(labelRow[i]);
+
+                }
+
                 CalculatorWidget calculatorWidget = new CalculatorWidget();
 
-                add(binGame, calculatorWidget);
+                calcWithTable.add(calculatorWidget, twosTable);
 
                 Span contentHeader = new Span(new H1("The Machine Language"));
 
@@ -45,7 +67,7 @@ public class BinaryBasicsView extends DataRepView {
 
                 pageLayout.add(contentHeader, contentPane, videoHeader, numberSystemsVid);
 
-                add(pageLayout);
+                add(pageLayout, binGame, calcWithTable);
 
 
         }

@@ -33,7 +33,7 @@ public class CalculatorWidget extends VerticalLayout {
         calculatorContainer.add(displayField);
 
         // Create buttons for numbers and operations
-        String[] buttonCaptions = {"7", "8", "9", "+", "4", "5", "6", "-", "1", "2", "3", "x", "0", ".", "=", "/", "x²", "C"};
+        String[] buttonCaptions = {"7", "8", "9", "+", "4", "5", "6", "-", "1", "2", "3", "x", "0", ".", "=", "/", "C"};
         HorizontalLayout rowLayout = new HorizontalLayout();
         for (String caption : buttonCaptions) {
             Button button = new Button(caption);
@@ -42,11 +42,11 @@ public class CalculatorWidget extends VerticalLayout {
                     .set("background-color", "#78756b")
                     .set("color", "black");
             button.addClickListener(e -> buttonClicked(caption));
-            if (caption.equals("=") || caption.equals("+") || caption.equals("-") || caption.equals("x") || caption.equals(".") || caption.equals("/") || caption.equals("x²")) {
+            if (caption.equals("=") || caption.equals("+") || caption.equals("-") || caption.equals("x") || caption.equals(".") || caption.equals("/")) {
                 button.getStyle().set("background-color", "#d98911");
             }
             if (caption.equals("C")) {
-                button.getStyle().set("min-width", "160px");
+                button.getStyle().set("min-width", "190px");
             }
             rowLayout.add(button);
 
@@ -99,9 +99,6 @@ public class CalculatorWidget extends VerticalLayout {
                 case "x":
                     currentResult *= inputNumber;
                     break;
-                case "x²":
-                    currentResult = Math.pow(inputNumber, 2);
-                    break;
                 case "/":
                     if (inputNumber != 0) {
                         currentResult /= inputNumber;
@@ -127,9 +124,6 @@ public class CalculatorWidget extends VerticalLayout {
                     break;
                 case "x":
                     currentResult *= inputNumber;
-                    break;
-                case "x²":
-                    currentResult = Math.pow(inputNumber, 2);
                     break;
                 case "/":
                     if (inputNumber != 0) {
