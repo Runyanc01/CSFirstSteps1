@@ -28,11 +28,11 @@ public class BinaryBasicsView extends DataRepView {
                 VerticalLayout twosTable = new VerticalLayout();
 
                 labelRow = new Span[8];
-                for (int i = 7; i >= 0; i--) {
+                for (int i = 0; i <= 7; i++) {
                         labelRow[i] = new Span();
                         labelRow[i].getElement().setProperty("innerHTML", "2<sup>" + i + "</sup> =" + (int) Math.pow(2, i));
                         labelRow[i].getStyle()
-                                .set("width", "32px")
+                                .set("width", "60px")
                                 .set("height", "36px")
                                 .set("margin-left", "8px")
                                 .set("margin-right", "8px");
