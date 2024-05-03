@@ -4,6 +4,7 @@ import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.vaadin.addons.tatu.ColorPicker;
 
 import java.util.Arrays;
@@ -58,7 +59,9 @@ public class HexToColorsView extends VerticalLayout {
                 new ColorPicker.ColorPreset("#ff7d00", "Orange")));
 
         //add to div
-        colorPickerContent.add(colorPickerInstructions, colorPicker);
+        Span colorPickerTitle = new Span(new H2("Hex Color Picker"));
+        colorPickerContent.add(colorPickerTitle, colorPickerInstructions, colorPicker);
+        colorPickerContent.addClassName(LumoUtility.Padding.XLARGE);
 
         //add content to view
         add(contentHeader, contentPane, videoHeader,colorVideo, colorPickerContent);

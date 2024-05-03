@@ -7,6 +7,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 
 //define routing
 @PageTitle("Binary Basics")
@@ -24,8 +25,13 @@ public class BinaryBasicsView extends VerticalLayout {
                 BinaryGameDriver binGame = new BinaryGameDriver();
                 binGame.getStyle().set("background-color", "var(--lumo-contrast-10pct)").set("border-radius", "15px");
 
+                Span binGameTitle = new Span(new H2("Binary Conversion Game"));
+
                 //create horizontal layout for calculator widget and reference table
                 HorizontalLayout calcWithTable = new HorizontalLayout();
+                calcWithTable.addClassNames(
+                        LumoUtility.Padding.MEDIUM
+                );
 
                 //create binary reference table for game
                 VerticalLayout twosTable = new VerticalLayout();
@@ -68,9 +74,10 @@ public class BinaryBasicsView extends VerticalLayout {
 
                 //add content to vertical layout
                 pageLayout.add(contentHeader, contentPane, videoHeader, numberSystemsVid);
+                pageLayout.addClassName(LumoUtility.Padding.LARGE);
 
                 //add all content to view
-                add(pageLayout, binGame, calcWithTable);
+                add(pageLayout, binGameTitle,binGame, calcWithTable);
 
 
         }

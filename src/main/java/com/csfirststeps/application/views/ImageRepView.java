@@ -5,6 +5,7 @@ import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.vaadin.addons.tatu.ColorPicker;
 
 //define routing
@@ -65,6 +66,7 @@ public class ImageRepView extends VerticalLayout {
         detailedVideo.getElement().setAttribute("allowfullscreen", true);
 
         //create bitmap game header
+        Span pictureGridTitle = new Span(new H2("Bitmap Image Creator"));
         Span pictureGridInstructions = new Span(new H3("Draw your own bitmap image using hex codes!"));
 
         //instantiate colorPicker
@@ -73,8 +75,12 @@ public class ImageRepView extends VerticalLayout {
         //instantiate bitmap game grid
         ColorGrid pictureGrid = new ColorGrid();
 
+        //add picture game content to div
+        Div bitmapGameContent = new Div(pictureGridTitle, pictureGridInstructions, pictureGrid,colorPicker);
+        bitmapGameContent.addClassName(LumoUtility.Padding.XLARGE);
+
         //add content to view
-        add(contentHeader, contentPane, imgVidHeader, imageVideo, detailedVideoHeader, detailedVideo, pictureGridInstructions,pictureGrid, colorPicker);
+        add(contentHeader, contentPane, imgVidHeader, imageVideo, detailedVideoHeader, detailedVideo, bitmapGameContent);
 
     }
 

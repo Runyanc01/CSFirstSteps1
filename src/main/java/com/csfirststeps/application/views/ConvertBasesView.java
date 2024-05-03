@@ -7,6 +7,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 
 @PageTitle("Convert Bases for Beginners")
 @Route(value = "convertbases", layout = MainLayout.class)
@@ -76,6 +77,7 @@ public class ConvertBasesView extends VerticalLayout {
 
         //add to horizontal layout
         calcWithTable.add(calculatorWidget, twosTable, hexTable, hexValueTable);
+        calcWithTable.addClassNames(LumoUtility.Padding.Top.SMALL);
 
 
         //create page content
@@ -102,14 +104,18 @@ public class ConvertBasesView extends VerticalLayout {
         convertBasesVid.setWidth("500px");
         convertBasesVid.setAllow("accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture");
         convertBasesVid.getElement().setAttribute("allowfullscreen", true);
+        convertBasesVid.addClassName(LumoUtility.Margin.Top.SMALL);
         Div videoFrame = new Div(videoHeader, convertBasesVid);
 
         //instantiate base conversion game
         BaseConvertGameDriver baseGame = new BaseConvertGameDriver();
         baseGame.getStyle().set("background-color", "var(--lumo-contrast-10pct)").set("border-radius", "15px");
+        baseGame.addClassName(LumoUtility.Margin.Top.LARGE);
+        Span baseGameTitle = new Span(new H2("Base Conversion Game"));
+        baseGameTitle.addClassName(LumoUtility.Padding.Top.LARGE);
 
         //add all elements to vertical layout
-        pageLayout.add(contentHeader, contentPane, videoFrame, baseGame, calcWithTable);
+        pageLayout.add(contentHeader, contentPane, videoFrame, baseGameTitle,baseGame, calcWithTable);
 
         //add vertical layout to view
         add(pageLayout);
